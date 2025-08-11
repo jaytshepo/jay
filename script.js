@@ -84,5 +84,6 @@ authForm.addEventListener("submit", (e) => {
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
 
