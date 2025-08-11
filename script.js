@@ -1,3 +1,34 @@
+
+// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyADfkLMNqakJ7oe_17JD7yHT2vsAWTmSfs",
+    authDomain: "login-tester-bbcd4.firebaseapp.com",
+    projectId: "login-tester-bbcd4",
+    storageBucket: "login-tester-bbcd4.firebasestorage.app",
+    messagingSenderId: "269641711240",
+    appId: "1:269641711240:web:f7ceb8893f1c54d44fe93d"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+
+
+
+
+
 let isLogin = true;
 
 const formTitle = document.getElementById("form-title");
@@ -57,33 +88,5 @@ authForm.addEventListener("submit", (e) => {
   }
 });
 
-
-
-
-
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-  import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyADfkLMNqakJ7oe_17JD7yHT2vsAWTmSfs",
-    authDomain: "login-tester-bbcd4.firebaseapp.com",
-    projectId: "login-tester-bbcd4",
-    storageBucket: "login-tester-bbcd4.firebasestorage.app",
-    messagingSenderId: "269641711240",
-    appId: "1:269641711240:web:f7ceb8893f1c54d44fe93d"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
 
 
