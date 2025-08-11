@@ -60,6 +60,8 @@ authForm.addEventListener("submit", async (e) => {
     if (isLogin) {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       message.textContent = `Welcome back, ${userCredential.user.email}`;
+      window.location.href = "index.html";
+
     } else {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       if (username) {
@@ -73,4 +75,5 @@ authForm.addEventListener("submit", async (e) => {
     message.textContent = err.message;
   }
 });
+
 
