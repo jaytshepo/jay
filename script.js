@@ -33,21 +33,31 @@ authForm.addEventListener("submit", (e) => {
   const password = document.getElementById("password").value.trim();
   const email = document.getElementById("email").value.trim();
 
-  if (isLogin) {
-    message.style.color = "green";
-    message.textContent = `Welcome back, ${username}!`;
-  } else {
-    if (!email) {
-      message.style.color = "red";
-      message.textContent = "Please enter your email.";
-      return;
-    }
-    message.style.color = "green";
-    message.textContent = `Account created for ${username}!`;
-  }
+    message.textContent = "";
+  message.style.color = "green";
 
-  authForm.reset();
+  try {
+    if (isLogin) {
+      // Login
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      message.textContent = `Welcome back, ${userCredential.user.email}`;
+    } else {
+      // Register
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // Set display name
+      if (username) {
+        await updateProfile(userCredential.user, { displayName: username });
+      }
+      message.textContent = `Account created for ${userCredential.user.email}`;
+    }
+    authForm.reset();
+  } catch (err) {
+    message.style.color = "red";
+    message.textContent = err.message;
+  }
 });
+
+
 
 
 
@@ -55,6 +65,12 @@ authForm.addEventListener("submit", (e) => {
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
+  import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -68,4 +84,5 @@ authForm.addEventListener("submit", (e) => {
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+
 
