@@ -40,8 +40,6 @@ button {
   width: 100%;
   padding: 10px;
   background: radial-gradient(circle at 80% 30%, #f4cb38 0%, #f2c635 35%, #fff6db 100% );
-
-  
   border: none;
   color: white;
   font-size: 16px;
@@ -50,7 +48,7 @@ button {
 }
 
 button:hover {
-  background: #1d4ed8;
+  background: #525252;
 }
 
 #toggle-text {
@@ -69,4 +67,5 @@ button:hover {
   font-weight: bold;
   text-align: center;
 }
+
 
