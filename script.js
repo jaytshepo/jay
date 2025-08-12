@@ -6,6 +6,7 @@ import {
   updateProfile
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyADfkLMNqakJ7oe_17JD7yHT2vsAWTmSfs",
   authDomain: "login-tester-bbcd4.firebaseapp.com",
@@ -15,8 +16,12 @@ const firebaseConfig = {
   appId: "1:269641711240:web:f7ceb8893f1c54d44fe93d"
 };
 
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+
+const adminEmail = "admin@metrorail.com"; 
 
 let isLogin = true;
 
@@ -58,16 +63,27 @@ authForm.addEventListener("submit", async (e) => {
 
   try {
     if (isLogin) {
+     
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      message.textContent = `Welcome back, ${userCredential.user.email}`;
-      window.location.href = "index.html";
+      const loggedInEmail = userCredential.user.email;
+
+      message.textContent = `Welcome back, ${loggedInEmail}`;
+
+    
+      if (loggedInEmail.toLowerCase() === adminEmail.toLowerCase()) {
+        window.location.href = "admin.html";
+      } else {
+        window.location.href = "index.html";
+      }
 
     } else {
+     
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       if (username) {
         await updateProfile(userCredential.user, { displayName: username });
       }
       message.textContent = `Account created for ${userCredential.user.email}`;
+
     }
     authForm.reset();
   } catch (err) {
@@ -75,5 +91,6 @@ authForm.addEventListener("submit", async (e) => {
     message.textContent = err.message;
   }
 });
+
 
 
